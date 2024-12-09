@@ -30,7 +30,13 @@ async function login() {
         )
 }
 login()
+if(!token){
+    displayLoginForm()
+}else{
+    poseUneQuestionaIa()
+}
 
+function displayLoginForm(){}
 async function poseUneQuestionaIa(){
     let parameters ={
         method:"POST",
