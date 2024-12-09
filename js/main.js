@@ -1,4 +1,5 @@
 let  token = null;
+const loginPage = document.querySelector(".login");
 
 async function login() {
     let params ={
@@ -20,23 +21,26 @@ async function login() {
     return await fetch('https://felix.esdlyon.dev/login', params)
         .then(response => response.json())
         .then(data =>{
-                console.log(data.token)
-                token = data.token
-                poseUneQuestionaIa()
+               return data.token
+
+
             }
-
-
-
         )
 }
-login()
+login().then((data) => {
+    token = data
+    console.log(token)
+})
 if(!token){
     displayLoginForm()
 }else{
     poseUneQuestionaIa()
 }
 
-function displayLoginForm(){}
+function displayLoginForm(){
+    loginPage.style.display = "block";
+
+}
 async function poseUneQuestionaIa(){
     let parameters ={
         method:"POST",
@@ -52,5 +56,6 @@ async function poseUneQuestionaIa(){
         .then(response => response.json())
         .then(data =>{
             console.log(data)
+            return data.message
         })
 }
