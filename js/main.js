@@ -1,5 +1,7 @@
 let  token = null;
 const loginPage = document.querySelector(".login");
+const submitLogin = document.querySelector(".submitLogin");
+
 
 
 async function login(username, password) {
@@ -11,8 +13,8 @@ async function login(username, password) {
 
         },
         body: JSON.stringify({
-            username: 'pierre',
-            password: 'XqSn5rM35sQT',
+            username: username,
+            password: password,
         })
     }
     return await fetch('https://felix.esdlyon.dev/login', params)
@@ -25,18 +27,25 @@ async function login(username, password) {
 
 
 
-async function displayLoginForm(){
+function displayLoginForm(){
     loginPage.style.display = "block";
 
-    let username = document.querySelector(".username")
-    let password = document.querySelector(".password")
-    token = await login(username, password);
-    if(token){
-        loginPage.style.display = "none";
-        poseUneQuestionaIa()
-    }
+    submitLogin.addEventListener('click', async(e) => {
+        e.preventDefault()
+        let username = document.querySelector(".username")
+        let password = document.querySelector(".password")
+    token = await login(username.value, password.value);
+
+        console.log(token);
+        if(token){
+            loginPage.style.display = "none";
+            poseUneQuestionaIa()
+        }
+    })
+
 
 }
+
 async function poseUneQuestionaIa(){
     let parameters ={
         method:"POST",
