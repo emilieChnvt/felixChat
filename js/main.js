@@ -1,5 +1,7 @@
 let  token = null;
 
+
+
 let params ={
     method:"POST",
     headers:{
@@ -18,14 +20,17 @@ fetch('https://felix.esdlyon.dev/login', params)
     .then(data =>{
         console.log(data.token)
         token = data.token
-        poseUneQuestionaIa()
+        if(!token){
+            displayLoginPage()
+        }else{
+            displayChatInterface()
+        }
     }
-
 
 )
 
 
- function poseUneQuestionaIa(){
+ function displayChatInterface(){
     let parameters ={
         method:"POST",
         headers:{
@@ -40,7 +45,13 @@ fetch('https://felix.esdlyon.dev/login', params)
     fetch('https://felix.esdlyon.dev/ollama', parameters)
         .then(response => response.json())
         .then(data =>{
-            console.log(data)
+
+            console.log(data);
         })
+
+ }
+
+
+ function displayLoginPage(){
 
  }
