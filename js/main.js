@@ -11,8 +11,8 @@ async function login(username, password) {
 
         },
         body: JSON.stringify({
-            username: username,
-            password: password,
+            username: 'pierre',
+            password: 'XqSn5rM35sQT',
         })
     }
     return await fetch('https://felix.esdlyon.dev/login', params)
@@ -23,21 +23,18 @@ async function login(username, password) {
         )
 }
 
-if(!token){
-    displayLoginForm()
-}else{
-    poseUneQuestionaIa()
-}
 
-function displayLoginForm(){
+
+async function displayLoginForm(){
     loginPage.style.display = "block";
 
     let username = document.querySelector(".username")
     let password = document.querySelector(".password")
-    login(username.value, password.value).then((data) => {
-        token = data
-        console.log(token)
-    })
+    token = await login(username, password);
+    if(token){
+        loginPage.style.display = "none";
+        poseUneQuestionaIa()
+    }
 
 }
 async function poseUneQuestionaIa(){
