@@ -1,36 +1,28 @@
 let  token = null;
 const loginPage = document.querySelector(".login");
 
-async function login() {
+
+async function login(username, password) {
     let params ={
         method:"POST",
         headers:{
             "Content-type":"application/json",
-            "Authorization": `Bearer ${token}`,
+
 
         },
         body: JSON.stringify({
-            username: 'pierre',
-            password: 'XqSn5rM35sQT',
+            username: username,
+            password: password,
         })
-
     }
-
-
-
     return await fetch('https://felix.esdlyon.dev/login', params)
         .then(response => response.json())
         .then(data =>{
                return data.token
-
-
             }
         )
 }
-login().then((data) => {
-    token = data
-    console.log(token)
-})
+
 if(!token){
     displayLoginForm()
 }else{
@@ -39,6 +31,13 @@ if(!token){
 
 function displayLoginForm(){
     loginPage.style.display = "block";
+
+    let username = document.querySelector(".username")
+    let password = document.querySelector(".password")
+    login(username.value, password.value).then((data) => {
+        token = data
+        console.log(token)
+    })
 
 }
 async function poseUneQuestionaIa(){
@@ -58,4 +57,10 @@ async function poseUneQuestionaIa(){
             console.log(data)
             return data.message
         })
+}
+
+if(!token){
+    displayLoginForm()
+}else{
+    poseUneQuestionaIa()
 }
