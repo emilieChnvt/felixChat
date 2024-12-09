@@ -2,35 +2,33 @@ let  token = null;
 
 
 
-let params ={
-    method:"POST",
-    headers:{
-        'Content-type':"application/json",
-    },
-    body: JSON.stringify({
-        username: 'pierre',
-        password: 'XqSn5rM35sQT',
-    } )
+
+async function login(){
+    let params ={
+        method:"POST",
+        headers:{
+            'Content-type':"application/json",
+        },
+        body: JSON.stringify({
+            username: 'pierre',
+            password: 'XqSn5rM35sQT',
+        } )
+    }
+
+    return await fetch('https://felix.esdlyon.dev/login', params)
+        .then(response => response.json())
+        .then(data =>{
+                console.log(data.token)
+                return data
+
+            }
+
+        )
+
 }
 
 
-
-fetch('https://felix.esdlyon.dev/login', params)
-    .then(response => response.json())
-    .then(data =>{
-        console.log(data.token)
-        token = data.token
-        if(!token){
-            displayLoginPage()
-        }else{
-            displayChatInterface()
-        }
-    }
-
-)
-
-
- function displayChatInterface(){
+ async function displayChatInterface(){
     let parameters ={
         method:"POST",
         headers:{
@@ -42,11 +40,11 @@ fetch('https://felix.esdlyon.dev/login', params)
 
         } )
     }
-    fetch('https://felix.esdlyon.dev/ollama', parameters)
+    return await fetch('https://felix.esdlyon.dev/ollama', parameters)
         .then(response => response.json())
         .then(data =>{
-
             console.log(data);
+            return data.message
         })
 
  }
