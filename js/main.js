@@ -1,41 +1,33 @@
 let  token = null;
 
+let params ={
+    method:"POST",
+    headers:{
+        "Content-type":"application/json",
+        "Authorization": `Bearer ${token}`,
 
-
-
-async function login(username, password) {
-    console.log(username, password);
-    let params ={
-        method:"POST",
-        headers:{
-            'Content-type':"application/json",
-        },
-        body: JSON.stringify({
-            username: username,
-            password: password,
-        } )
-    }
-
-    return await fetch('https://felix.esdlyon.dev/login', params)
-        .then(response => response.json())
-        .then(data =>{
-                return data.token
-            }
-
-        )
+    },
+    body: JSON.stringify({
+        username: 'pierre',
+        password: 'XqSn5rM35sQT',
+    })
 
 }
 
-function displayLoginPage() {
 
-}
 
-if(!token){
-    displayLoginPage()
-}else{
-    displayLoginPage()
-}
- async function displayChatInterface(){
+fetch('https://felix.esdlyon.dev/login', params)
+    .then(response => response.json())
+    .then(data =>{
+            console.log(data.token)
+            token = data.token
+            poseUneQuestionaIa()
+        }
+
+
+
+)
+function poseUneQuestionaIa(){
     let parameters ={
         method:"POST",
         headers:{
@@ -44,19 +36,11 @@ if(!token){
         },
         body: JSON.stringify({
             prompt: "bonjour, je m'appelle Emilie",
-
         } )
     }
-    return await fetch('https://felix.esdlyon.dev/ollama', parameters)
+    fetch('https://felix.esdlyon.dev/ollama', parameters)
         .then(response => response.json())
         .then(data =>{
-            console.log(data);
-            return data.message
+            console.log(data)
         })
-
- }
-
-
- function displayLoginPage(){
-
- }
+}
