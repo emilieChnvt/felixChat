@@ -70,10 +70,14 @@ function displayChat(){
     chat.style.display = "block";
     const prompt = document.querySelector(".prompt");
     const chatSubmit = document.querySelector(".chatSubmit");
-
+    const messagesDiv = document.querySelector(".messages");
     chatSubmit.addEventListener("click", ()=>{
         poseUneQuestionaIa(prompt.value).then((data) =>{
             console.log(data);
+            const bulle = document.createElement("p");
+            bulle.className="bulle";
+            bulle.textContent = data;
+            messagesDiv.appendChild(bulle);
         });
     })
 }
