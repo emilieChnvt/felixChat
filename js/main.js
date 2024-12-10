@@ -68,6 +68,8 @@ async function poseUneQuestionaIa(prompt){
 
 function displayChat(){
     chat.style.display = "block";
+    const prompt = document.querySelector(".prompt");
+    const chatSubmit = document.querySelector(".chatSubmit");
 
 }
 
