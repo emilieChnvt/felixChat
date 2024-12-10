@@ -71,6 +71,11 @@ function displayChat(){
     const prompt = document.querySelector(".prompt");
     const chatSubmit = document.querySelector(".chatSubmit");
 
+    chatSubmit.addEventListener("click", ()=>{
+        poseUneQuestionaIa(prompt.value).then((data) =>{
+            console.log(data);
+        });
+    })
 }
 
 displayLoginForm();
