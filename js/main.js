@@ -2,7 +2,17 @@ let  token = null;
 const loginPage = document.querySelector(".login");
 const submitLogin = document.querySelector(".submitLogin");
 const chat = document.querySelector(".chat");
-let messagesArray=[]
+const messagesDiv = document.querySelector(".messages");
+let premierMessage ={
+    author : 'Felix',
+    content : 'Hello World!'
+}
+let deuxiemeMessage ={
+    author : 'Felix',
+    content : 'Hello World!'
+}
+
+let messagesArray=[premierMessage, deuxiemeMessage];
 
 
 async function login(username, password) {
@@ -72,14 +82,31 @@ function displayChat(){
     const chatSubmit = document.querySelector(".chatSubmit");
     const messagesDiv = document.querySelector(".messages");
     chatSubmit.addEventListener("click", ()=>{
-        poseUneQuestionaIa(prompt.value).then((data) =>{
-            console.log(data);
-            const bulle = document.createElement("p");
-            bulle.className="bulle";
-            bulle.textContent = data;
-            messagesDiv.appendChild(bulle);
+        console.log(messagesDiv)
+addMessageToArray({
+    author : "User",
+    content:prompt.value
+})
+
+
         });
+
+        displayMessages()
+    poseUneQuestionaIa(prompt.value).then((data) =>{
+        console.log(data);
     })
 }
+function displayMessages (){
+    messagesArray.forEach(message => {
+        let paragraph = document.createElement("p");
+        paragraph.classList.add("bulle");
+        paragraph.textContent = message.content;
 
+        messagesDiv.appendChild(paragraph);
+    })
+}
+function addMessageToArray(message){
+    messagesArray.push(message)
+    console.log(messagesArray)
+}
 displayLoginForm();
