@@ -1,6 +1,7 @@
 let  token = null;
 const loginPage = document.querySelector(".login");
 const submitLogin = document.querySelector(".submitLogin");
+const chat = document.querySelector(".chat");
 
 
 
@@ -39,14 +40,13 @@ function displayLoginForm(){
         console.log(token);
         if(token){
             loginPage.style.display = "none";
-            poseUneQuestionaIa()
+            displayChat()
         }
     })
 
-
 }
 
-async function poseUneQuestionaIa(){
+async function poseUneQuestionaIa(prompt){
     let parameters ={
         method:"POST",
         headers:{
@@ -54,7 +54,7 @@ async function poseUneQuestionaIa(){
             'Authorization':"Bearer " + token,
         },
         body: JSON.stringify({
-            prompt: "bonjour, je m'appelle Emilie",
+            prompt: prompt,
         } )
     }
     return await fetch('https://felix.esdlyon.dev/ollama', parameters)
@@ -63,10 +63,12 @@ async function poseUneQuestionaIa(){
             console.log(data)
             return data.message
         })
+
 }
 
-if(!token){
-    displayLoginForm()
-}else{
-    poseUneQuestionaIa()
+function displayChat(){
+    chat.style.display = "block";
+
 }
+
+displayLoginForm();
