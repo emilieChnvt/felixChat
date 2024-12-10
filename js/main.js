@@ -2,7 +2,7 @@ let  token = null;
 const loginPage = document.querySelector(".login");
 const submitLogin = document.querySelector(".submitLogin");
 const chat = document.querySelector(".chat");
-
+let messagesArray=[]
 
 
 async function login(username, password) {
