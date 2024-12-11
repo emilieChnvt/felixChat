@@ -14,19 +14,21 @@
         <h2>Login</h2>
         <div class="form-group">
             <label for="username"></label>
-            <input type="text" name="" id="username" class="username" placeholder="username">
+            <input type="text" name="" id="username" class="username" placeholder="username" required>
         </div>
        <div class="form-group">
            <label for="password"></label>
-           <input type="password" id="password"  class="password" placeholder="password">
+           <input type="password" id="password"  class="password" placeholder="password" required>
        </div>
         <button class="submitLogin">Log in</button>
     </div>
+
     <div class="chat">
         <div class="messages"></div>
         <div class="chatForm">
+
             <input type="text" class="prompt" placeholder="Enter your message ">
-            <input type="file" accept="image/png, image/jpeg">
+            <button class="plusBtn">+</button>
             <button class="chatSubmit">send</button>
         </div>
     </div>

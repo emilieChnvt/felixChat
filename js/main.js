@@ -3,6 +3,9 @@ const loginPage = document.querySelector(".login");
 const submitLogin = document.querySelector(".submitLogin");
 const chat = document.querySelector(".chat");
 const messagesDiv = document.querySelector(".messages");
+const plusBtn = document.querySelector(".plusBtn");
+const hideDiv = document.querySelector(".hideDiv");
+
 let premierMessage ={
     author : 'Felix',
     content : 'Hello World!'
@@ -94,6 +97,7 @@ function handlePrompt(){
             content: prompt.value
         })
         displayMessages();
+        showTypingPhrase()
         poseUneQuestionaIa(prompt.value).then((data) =>{
             console.log(data)
             addMessageToArray({
@@ -126,6 +130,9 @@ function displayMessages (){
             paragraph.classList.add("user");
             nameMessage.style.textAlign = "right";
             imageProfil.style.textAlign = "right";
+            imageProfil.src = 'images/_une_mannequin_dfile_dans_une_robe_conue_en_myclium_luminescent_scintillant_doucement_dans_une_lumi_4m80s2r4ik6drw2z7csp_2.png'
+
+
         }
         nameMessage.textContent = message.author ;
 
@@ -141,3 +148,9 @@ function addMessageToArray(message){
     console.log(messagesArray)
 }
 displayLoginForm();
+
+function showTypingPhrase(){
+    const indicatorPhrase = document.createElement("p");
+    indicatorPhrase.innerText = "Félix est en train d'écrire...";
+    messagesDiv.appendChild(indicatorPhrase);
+}
