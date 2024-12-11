@@ -8,7 +8,7 @@ const hideDiv = document.querySelector(".hideDiv");
 
 let premierMessage ={
     author : 'Felix',
-    content : 'Hello !'
+    content : "Hello ! je m'appelle Félix, que puis-je faire pour vous?"
 }
 
 
