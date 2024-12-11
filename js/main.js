@@ -9,7 +9,7 @@ let premierMessage ={
 }
 let deuxiemeMessage ={
     author : 'Felix',
-    content : 'Hello World!'
+    content : ' World!'
 }
 
 let messagesArray=[premierMessage, deuxiemeMessage];
@@ -78,8 +78,9 @@ async function poseUneQuestionaIa(prompt){
 
 function displayChat(){
     chat.style.display = "block";
-    handlePrompt()
+
     displayMessages()
+    handlePrompt()
 
 }
 
@@ -92,6 +93,7 @@ function handlePrompt(){
             author: "User",
             content: prompt.value
         })
+        displayMessages();
         poseUneQuestionaIa(prompt.value).then((data) =>{
             console.log(data)
             addMessageToArray({
@@ -103,6 +105,7 @@ function handlePrompt(){
     })
     }
 function displayMessages (){
+    messagesDiv.innerHTML = '';
     messagesArray.forEach(message => {
         let paragraph = document.createElement("p");
         paragraph.classList.add("bulle");
