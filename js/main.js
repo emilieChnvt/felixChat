@@ -97,14 +97,18 @@ function handlePrompt(){
             content: prompt.value
         })
         displayMessages();
+
+        prompt.value = ""; // vider input
+
         showTypingPhrase()
         poseUneQuestionaIa(prompt.value).then((data) =>{
             console.log(data)
-            addMessageToArray({
+            const felixMessage ={
                 author: "Felix",
                 content: data
-            });
-            displayChat()
+            };
+            addMessageToArray(felixMessage)
+            displayMessages();
         })
     })
     }

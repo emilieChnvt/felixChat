@@ -101,7 +101,8 @@
 
 .imageProfil{
 
-
+    margin-left: 3px;
+    margin-right: 3px;
     object-fit: cover;
     height: 30px;
     width: 30px;
