@@ -8,14 +8,11 @@ const hideDiv = document.querySelector(".hideDiv");
 
 let premierMessage ={
     author : 'Felix',
-    content : 'Hello World!'
-}
-let deuxiemeMessage ={
-    author : 'Felix',
-    content : ' World!'
+    content : 'Hello !'
 }
 
-let messagesArray=[premierMessage, deuxiemeMessage];
+
+let messagesArray=[premierMessage];
 
 
 async function login(username, password) {
@@ -80,7 +77,7 @@ async function poseUneQuestionaIa(prompt){
 }
 
 function displayChat(){
-    chat.style.display = "block";
+    chat.style.display = "flex";
 
     displayMessages()
     handlePrompt()
