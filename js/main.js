@@ -154,12 +154,39 @@ function displayMessages (){
         const emojiDiv = document.createElement("div");
         emojiDiv.classList.add("emoji");
 
+        if(message.reactions && message.reactions.length > 0){
+            message.reactions.forEach(reaction => {
+                const reactionSpan = document.createElement("span");
+                reactionSpan.classList.add("reaction");
+                reactionSpan.textContent = reaction;
+                emojiDiv.appendChild(reactionSpan);
+            })
+        }
 
         const pouce = document.createElement("span");
-        pouce.textContent = "👍"
+        pouce.textContent = "👍";
+        pouce.classList.add("emoji");
+        pouce.addEventListener("click", ()=>{addReaction(message,"👍" )})
         const heart = document.createElement("span");
-        heart.textContent = "❤"
+        heart.textContent = "❤";
+        heart.classList.add("emoji");
+        heart.addEventListener("click",()=>{addReaction(message,"❤" )})
+
+        emojiDiv.appendChild(heart);
+        emojiDiv.appendChild(pouce);
+
+        divForEachMessage.appendChild(emojiDiv);
+
+        messagesDiv.appendChild(divForEachMessage);
     })
+}
+
+function addReaction(message, reaction){
+    if(!message.reactions){
+        message.reactions = [];
+    }
+    message.reactions.push(reaction);
+    displayMessages();
 }
 function addMessageToArray(message){
     messagesArray.push(message)

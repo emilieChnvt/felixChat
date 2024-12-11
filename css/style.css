@@ -112,5 +112,18 @@
     background-image: url('../images/jeanpaul_fondvertbasePNG.png');
 }
 
+/*réactions*/
+.reactions{
+    margin-top: 10px;
+}
+.reaction{
+    margin-right: 10px;
+    display: inline-block;
+}
+.reaction:hover{
+    transform: scale(1.1);
+    transition-duration: 0.2s;
+}
+
 
 
