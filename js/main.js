@@ -107,17 +107,24 @@ function handlePrompt(){
 function displayMessages (){
     messagesDiv.innerHTML = '';
     messagesArray.forEach(message => {
-
+        const divForEachMessage = document.createElement("div");
         const paragraph = document.createElement("p");
         paragraph.classList.add("bulle");
         paragraph.textContent = message.content;
+        const nameMessage = document.createElement("p");
+        nameMessage.textContent = message.author + ;
 
-        messagesDiv.appendChild(paragraph);
+        divForEachMessage.appendChild(nameMessage);
+        divForEachMessage.appendChild(paragraph);
+
+        messagesDiv.appendChild(divForEachMessage);
         if(message.author === "Felix"){
             console.log(message.author)
             paragraph.classList.add("felix");
+            nameMessage.style.textAlign = "left";
         }else{
             paragraph.classList.add("user");
+            nameMessage.style.textAlign = "right";
         }
     })
 }
