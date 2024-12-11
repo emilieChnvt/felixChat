@@ -5,6 +5,9 @@
 .login{
     display: none;
 }
+.messages{
+    margin-bottom: 80px;
+}
 .chat{
     display: none;
     overflow-y:auto;
