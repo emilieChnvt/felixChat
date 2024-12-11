@@ -112,20 +112,28 @@ function displayMessages (){
         paragraph.classList.add("bulle");
         paragraph.textContent = message.content;
         const nameMessage = document.createElement("p");
-        nameMessage.textContent = message.author  ;
+        const imageProfil = document.createElement("img");
+        imageProfil.classList.add("imageProfil");
 
-        divForEachMessage.appendChild(nameMessage);
-        divForEachMessage.appendChild(paragraph);
 
-        messagesDiv.appendChild(divForEachMessage);
         if(message.author === "Felix"){
             console.log(message.author)
             paragraph.classList.add("felix");
             nameMessage.style.textAlign = "left";
+            imageProfil.src = 'images/jeanpaul_fondvertbasePNG.png'
+
         }else{
             paragraph.classList.add("user");
             nameMessage.style.textAlign = "right";
+            imageProfil.style.textAlign = "right";
         }
+        nameMessage.textContent = message.author ;
+
+        nameMessage.prepend(imageProfil);// pour placer l'image à gauche du texte
+        divForEachMessage.appendChild(nameMessage);
+        divForEachMessage.appendChild(paragraph);
+
+        messagesDiv.appendChild(divForEachMessage);
     })
 }
 function addMessageToArray(message){

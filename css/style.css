@@ -68,10 +68,11 @@
 /*Form Login*/
 .login{
     display: none;
-    height: 70vh;
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    height: 50vh;
+
     border-radius: 10px;
     background-color: #f1f1f1;
     width: 100%;
@@ -80,10 +81,12 @@
 }
 .form-group{
     margin-bottom: 20px;
+    width: 100%;
+    text-align: center;
 }
 .form-group input{
     padding: 10px;
-    width: 100%;
+    width: 60%;
     border: 1px solid #cccccc;
     border-radius: 5px;
 }
@@ -96,5 +99,16 @@
     border: none;
 }
 
+.imageProfil{
+
+
+    object-fit: cover;
+    height: 40px;
+    width: 40px;
+    border-radius: 100%;
+}
+.backgroundProfil{
+    background-image: url('../images/jeanpaul_fondvertbasePNG.png');
+}
 
 
