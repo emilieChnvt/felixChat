@@ -39,7 +39,7 @@ async function login(username, password) {
 
 
 function displayLoginForm(){
-    loginPage.style.display = "block";
+    loginPage.style.display = "flex";
 
     submitLogin.addEventListener('click', async(e) => {
         e.preventDefault()
@@ -112,7 +112,7 @@ function displayMessages (){
         paragraph.classList.add("bulle");
         paragraph.textContent = message.content;
         const nameMessage = document.createElement("p");
-        nameMessage.textContent = message.author + ;
+        nameMessage.textContent = message.author  ;
 
         divForEachMessage.appendChild(nameMessage);
         divForEachMessage.appendChild(paragraph);
