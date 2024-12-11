@@ -119,6 +119,9 @@ function displayMessages (){
         const paragraph = document.createElement("p");
         paragraph.classList.add("bulle");
         paragraph.textContent = message.content;
+
+
+        // auteur message
         const nameMessage = document.createElement("p");
         const imageProfil = document.createElement("img");
         imageProfil.classList.add("imageProfil");
@@ -145,6 +148,17 @@ function displayMessages (){
         divForEachMessage.appendChild(paragraph);
 
         messagesDiv.appendChild(divForEachMessage);
+
+
+        //réactons émojis
+        const emojiDiv = document.createElement("div");
+        emojiDiv.classList.add("emoji");
+
+
+        const pouce = document.createElement("span");
+        pouce.textContent = "👍"
+        const heart = document.createElement("span");
+        heart.textContent = "❤"
     })
 }
 function addMessageToArray(message){
