@@ -107,11 +107,18 @@ function handlePrompt(){
 function displayMessages (){
     messagesDiv.innerHTML = '';
     messagesArray.forEach(message => {
-        let paragraph = document.createElement("p");
+
+        const paragraph = document.createElement("p");
         paragraph.classList.add("bulle");
         paragraph.textContent = message.content;
 
         messagesDiv.appendChild(paragraph);
+        if(message.author === "Felix"){
+            console.log(message.author)
+            paragraph.classList.add("felix");
+        }else{
+            paragraph.classList.add("user");
+        }
     })
 }
 function addMessageToArray(message){
