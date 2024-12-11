@@ -152,7 +152,7 @@ function displayMessages (){
 
         //réactons émojis
         const emojiDiv = document.createElement("div");
-        emojiDiv.classList.add("emoji");
+        emojiDiv.classList.add("reactions");
 
         if(message.reactions && message.reactions.length > 0){
             message.reactions.forEach(reaction => {
@@ -185,7 +185,7 @@ function addReaction(message, reaction){
     if(!message.reactions){
         message.reactions = [];
     }
-    message.reactions.push(reaction);
+    message.reactions=[reaction];
     displayMessages();
 }
 function addMessageToArray(message){
