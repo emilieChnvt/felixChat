@@ -78,24 +78,30 @@ async function poseUneQuestionaIa(prompt){
 
 function displayChat(){
     chat.style.display = "block";
+    handlePrompt()
+    displayMessages()
+
+}
+
+function handlePrompt(){
     const prompt = document.querySelector(".prompt");
     const chatSubmit = document.querySelector(".chatSubmit");
-    const messagesDiv = document.querySelector(".messages");
-    chatSubmit.addEventListener("click", ()=>{
+    chatSubmit.addEventListener("click", ()=> {
         console.log(messagesDiv)
-addMessageToArray({
-    author : "User",
-    content:prompt.value
-})
-
-
-        });
-
-        displayMessages()
-    poseUneQuestionaIa(prompt.value).then((data) =>{
-        console.log(data);
+        addMessageToArray({
+            author: "User",
+            content: prompt.value
+        })
+        poseUneQuestionaIa(prompt.value).then((data) =>{
+            console.log(data)
+            addMessageToArray({
+                author: "Felix",
+                content: data
+            });
+            displayChat()
+        })
     })
-}
+    }
 function displayMessages (){
     messagesArray.forEach(message => {
         let paragraph = document.createElement("p");
