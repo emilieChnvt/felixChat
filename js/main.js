@@ -1,7 +1,9 @@
 let  token = null;
 const loginPage = document.querySelector(".login");
+const allConv = document.querySelector(".allConv");
 const submitLogin = document.querySelector(".submitLogin");
 const chat = document.querySelector(".chat");
+const conversation = document.querySelector(".conversation");
 const messagesDiv = document.querySelector(".messages");
 const loading = document.querySelector(".loading");
 let premierMessage ={
@@ -48,7 +50,7 @@ function displayLoginForm(){
         console.log(token);
         if(token){
             loginPage.style.display = "none";
-            displayChat()
+            allConv.style.display = "flex";
         }
     })
 
@@ -70,7 +72,7 @@ async function poseUneQuestionaIa(prompt){
 
         .then(response => response.json())
         .then(data =>{
-
+            hideLoading()
             console.log(data)
             return data.message
         })
@@ -84,6 +86,10 @@ function displayChat(){
     handlePrompt()
 
 }
+conversation.addEventListener('click', ()=>{
+  displayChat();
+    allConv.style.display = "none";
+})
 
 function handlePrompt(){
     const prompt = document.querySelector(".prompt");
