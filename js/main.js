@@ -161,6 +161,7 @@ function displayMessages (){
                     reactionSpan.textContent = reaction;
                     emojiDiv.appendChild(reactionSpan);
                 })
+                document.querySelector(".reaction").addEventListener("click", ()=>{message.emoji.remove()});
             }
 
             const pouce = document.createElement("span");
@@ -196,9 +197,14 @@ function addMessageToArray(message){
 
 
 function showTypingPhrase(){
-    const indicatorPhrase = document.createElement("p");
-    indicatorPhrase.innerText = "️⏳️";
-    indicatorPhrase.classList.add("sablier");
-    messagesDiv.appendChild(indicatorPhrase);
+    const loading = document.querySelector(".loading");
+    loading.classList.add("loading");
+    loading.style.display = "flex";
+
+    const dots=document.querySelectorAll(".dot");
+
+    dots.classList.add("dot");
+
+
 }
 displayLoginForm();
