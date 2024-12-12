@@ -56,6 +56,7 @@ function displayLoginForm(){
 
 }
 async function poseUneQuestionaIa(prompt){
+
     let parameters ={
         method:"POST",
         headers:{
@@ -66,9 +67,12 @@ async function poseUneQuestionaIa(prompt){
             prompt: prompt,
         } )
     }
+    showTypingPhrase()
     return await fetch('https://felix.esdlyon.dev/ollama', parameters)
+
         .then(response => response.json())
         .then(data =>{
+
             console.log(data)
             return data.message
         })
@@ -96,7 +100,7 @@ function handlePrompt(){
 
         prompt.value = ""; // vider input
 
-        showTypingPhrase()
+
         poseUneQuestionaIa(prompt.value).then((data) =>{
             console.log(data)
             const felixMessage ={
@@ -149,7 +153,7 @@ function displayMessages (){
         const emojiDiv = document.createElement("div");
         emojiDiv.classList.add("reactions");
 
-        if(message.reactions && message.reactions.length > 0){
+        if(message.reactions && message.reactions.length > 0 ){
             message.reactions.forEach(reaction => {
                 const reactionSpan = document.createElement("span");
                 reactionSpan.classList.add("reaction");
@@ -191,6 +195,7 @@ displayLoginForm();
 
 function showTypingPhrase(){
     const indicatorPhrase = document.createElement("p");
-    indicatorPhrase.innerText = "Félix est en train d'écrire...";
+    indicatorPhrase.innerText = "️⏳️";
+    indicatorPhrase.classList.add("sablier");
     messagesDiv.appendChild(indicatorPhrase);
 }
