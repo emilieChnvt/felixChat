@@ -133,8 +133,7 @@ function displayMessages (){
             paragraph.classList.add("user");
             nameMessage.style.textAlign = "right";
             imageProfil.style.textAlign = "right";
-            imageProfil.src = 'images/_une_mannequin_dfile_dans_une_robe_conue_en_myclium_luminescent_scintillant_doucement_dans_une_lumi_4m80s2r4ik6drw2z7csp_2.png'
-
+            imageProfil.src = 'images/myImage.png'
 
         }
         nameMessage.textContent = message.author ;
