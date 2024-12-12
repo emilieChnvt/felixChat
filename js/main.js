@@ -3,9 +3,7 @@ const loginPage = document.querySelector(".login");
 const submitLogin = document.querySelector(".submitLogin");
 const chat = document.querySelector(".chat");
 const messagesDiv = document.querySelector(".messages");
-const plusBtn = document.querySelector(".plusBtn");
-const hideDiv = document.querySelector(".hideDiv");
-
+const loading = document.querySelector(".loading");
 let premierMessage ={
     author : 'Felix',
     content : "Hello ! je m'appelle Félix, que puis-je faire pour vous?"
@@ -159,9 +157,12 @@ function displayMessages (){
                     const reactionSpan = document.createElement("span");
                     reactionSpan.classList.add("reaction");
                     reactionSpan.textContent = reaction;
+
                     emojiDiv.appendChild(reactionSpan);
+                    reactionSpan.addEventListener("click", () => {reactionSpan.remove()})
                 })
-                document.querySelector(".reaction").addEventListener("click", ()=>{message.emoji.remove()});
+
+
             }
 
             const pouce = document.createElement("span");
@@ -183,6 +184,7 @@ function displayMessages (){
     })
 }
 
+
 function addReaction(message, reaction){
     if(!message.reactions){
         message.reactions = [];
@@ -197,14 +199,16 @@ function addMessageToArray(message){
 
 
 function showTypingPhrase(){
-    const loading = document.querySelector(".loading");
+
     loading.classList.add("loading");
     loading.style.display = "flex";
 
     const dots=document.querySelectorAll(".dot");
-
-    dots.classList.add("dot");
-
-
+    dots.forEach((dot)=>{
+        dot.classList.add("dot");
+    })
+}
+function hideLoading(){
+    loading.style.display = "none";
 }
 displayLoginForm();
