@@ -150,31 +150,33 @@ function displayMessages (){
 
 
         //réactons émojis
-        const emojiDiv = document.createElement("div");
-        emojiDiv.classList.add("reactions");
+        if(message.author === "Felix"){
+            const emojiDiv = document.createElement("div");
+            emojiDiv.classList.add("reactions");
 
-        if(message.reactions && message.reactions.length > 0 ){
-            message.reactions.forEach(reaction => {
-                const reactionSpan = document.createElement("span");
-                reactionSpan.classList.add("reaction");
-                reactionSpan.textContent = reaction;
-                emojiDiv.appendChild(reactionSpan);
-            })
-        }
+            if(message.reactions && message.reactions.length > 0 ){
+                message.reactions.forEach(reaction => {
+                    const reactionSpan = document.createElement("span");
+                    reactionSpan.classList.add("reaction");
+                    reactionSpan.textContent = reaction;
+                    emojiDiv.appendChild(reactionSpan);
+                })
+            }
 
-        const pouce = document.createElement("span");
-        pouce.textContent = "👍";
-        pouce.classList.add("emoji");
-        pouce.addEventListener("click", ()=>{addReaction(message,"👍" )})
-        const heart = document.createElement("span");
-        heart.textContent = "❤";
-        heart.classList.add("emoji");
-        heart.addEventListener("click",()=>{addReaction(message,"❤" )})
+            const pouce = document.createElement("span");
+            pouce.textContent = "👍";
+            pouce.classList.add("emoji");
+            pouce.addEventListener("click", ()=>{addReaction(message,"👍" )})
+            const heart = document.createElement("span");
+            heart.textContent = "❤";
+            heart.classList.add("emoji");
+            heart.addEventListener("click",()=>{addReaction(message,"❤" )})
 
-        emojiDiv.appendChild(heart);
-        emojiDiv.appendChild(pouce);
+            emojiDiv.appendChild(heart);
+            emojiDiv.appendChild(pouce);
 
-        divForEachMessage.appendChild(emojiDiv);
+            divForEachMessage.appendChild(emojiDiv);}
+
 
         messagesDiv.appendChild(divForEachMessage);
     })
@@ -191,7 +193,7 @@ function addMessageToArray(message){
     messagesArray.push(message)
     console.log(messagesArray)
 }
-displayLoginForm();
+
 
 function showTypingPhrase(){
     const indicatorPhrase = document.createElement("p");
@@ -199,3 +201,4 @@ function showTypingPhrase(){
     indicatorPhrase.classList.add("sablier");
     messagesDiv.appendChild(indicatorPhrase);
 }
+displayLoginForm();
