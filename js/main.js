@@ -21,6 +21,32 @@ conversation.addEventListener('click', ()=>{
 })
 
 
+function addEmoji(message){
+
+    const smileyToEmoji = {
+        ":-)": "😊",
+        ":)": "😊",
+        ":-D": "😄",
+        ":D": "😄",
+        ":-(": "☹️",
+        ":(": "☹️",
+        ";-)": "😉",
+        ";)": "😉"
+    };
+
+// Expression régulière pour détecter les smileys textuels
+    const smileyRegex = /(:-\)|:\)|:-D|:D|:-\(|:\(|;-\)|;\))/g;
+
+// Fonction de remplacement
+    message.content = message.content.replace(smileyRegex, match => smileyToEmoji[match]);
+
+    console.log(transformedText);
+
+
+}
+
+
+
 
 
 
@@ -149,6 +175,7 @@ function displayMessages (){
 
 
         messagesDiv.appendChild(divForEachMessage);
+        addEmoji();
     })
 }
 
