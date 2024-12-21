@@ -44,12 +44,6 @@ function addEmoji(message){
 
 
 }
-
-
-
-
-
-
 function displayLoginForm(){
     loginPage.style.display = "flex";
 
@@ -67,8 +61,6 @@ function displayLoginForm(){
     })
 
 }
-
-
 function displayChat(){
     chat.style.display = "flex";
 
@@ -76,9 +68,6 @@ function displayChat(){
     handlePrompt()
 
 }
-
-
-
 function handlePrompt(){
     const prompt = document.querySelector(".prompt");
     const chatSubmit = document.querySelector(".chatSubmit");
@@ -109,7 +98,6 @@ function displayMessages (){
     messagesArray.forEach(message => {
         const messageElement = createMessageElement(message);
         messagesDiv.appendChild(messageElement);
-
 
         //réactons émojis
         if(message.author === "Felix") {
@@ -149,12 +137,20 @@ function createMessageElement(message){
     const nameMessage = createAuthorElement(message);
     paragraph.classList.add(message.author === "Felix" ? "felix" : "user");
 
+    const trashMessage = deleteElement(message)
+
     divForEachMessage.appendChild(nameMessage);
     divForEachMessage.appendChild(paragraph);
+    divForEachMessage.appendChild(trashMessage);
 
     return divForEachMessage;
 
 
+}
+function deleteElement(message){
+    const trash = document.createElement("p");
+    trash.innerHTML = '🗑️'
+    return trash;
 }
 function createReactionElement(reaction){
     const reactionSpan = document.createElement("span");
