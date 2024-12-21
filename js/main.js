@@ -137,7 +137,7 @@ function createMessageElement(message){
     const nameMessage = createAuthorElement(message);
     paragraph.classList.add(message.author === "Felix" ? "felix" : "user");
 
-    const trashMessage = deleteElement(message)
+    const trashMessage = deleteElement(divForEachMessage, message)
 
     divForEachMessage.appendChild(nameMessage);
     divForEachMessage.appendChild(paragraph);
@@ -147,9 +147,19 @@ function createMessageElement(message){
 
 
 }
-function deleteElement(message){
+function deleteElement(divForEachMessage, message){
     const trash = document.createElement("p");
     trash.innerHTML = '🗑️'
+
+    trash.addEventListener("click", ()=>{
+        const index = messagesArray.indexOf(message);
+        if(index !== -1){
+            messagesArray.splice(index, 1);
+        }
+        divForEachMessage.remove();
+        displayMessages();
+    })
+
     return trash;
 }
 function createReactionElement(reaction){
