@@ -160,6 +160,7 @@ function createReactionElement(reaction){
     const reactionSpan = document.createElement("span");
     reactionSpan.classList.add("reaction");
     reactionSpan.textContent = reaction;
+
     reactionSpan.addEventListener("click", () => {reactionSpan.remove()})
     return reactionSpan;
 
@@ -182,12 +183,12 @@ function createReactionButtons(message){
 
     return emojiDiv;
 }
-function createEmojiButton(message, emoji){
-    const button = document.createElement("button");
-    button.textContent = emoji;
-    button.classList.add("emoji");
-    button.addEventListener("click", ()=>{addReaction(message, emoji)})
-    return button;
+function createEmojiButton(emoji, message){
+    const span = document.createElement("span");
+    span.textContent = emoji;
+    span.classList.add("emoji");
+    span.addEventListener("click", ()=>{addReaction(message, emoji)})
+    return span;
 }
 function addReaction(message, reaction){
     if(!message.reactions){
