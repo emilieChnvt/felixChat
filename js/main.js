@@ -107,79 +107,88 @@ function handlePrompt(){
 function displayMessages (){
     messagesDiv.innerHTML = '';
     messagesArray.forEach(message => {
-        const divForEachMessage = document.createElement("div");
-        const paragraph = document.createElement("p");
-        paragraph.classList.add("bulle");
-        paragraph.textContent = message.content;
-
-
-        // auteur message
-        const nameMessage = document.createElement("p");
-        const imageProfil = document.createElement("img");
-        imageProfil.classList.add("imageProfil");
-
-
-        if(message.author === "Felix"){
-            console.log(message.author)
-            paragraph.classList.add("felix");
-            nameMessage.style.textAlign = "left";
-            imageProfil.src = 'images/jeanpaul_fondvertbasePNG.png'
-
-        }else{
-            paragraph.classList.add("user");
-            nameMessage.style.textAlign = "right";
-            imageProfil.style.textAlign = "right";
-            imageProfil.src = 'images/myImage.png'
-
-        }
-        nameMessage.textContent = message.author ;
-
-        nameMessage.prepend(imageProfil);// pour placer l'image à gauche du texte
-        divForEachMessage.appendChild(nameMessage);
-        divForEachMessage.appendChild(paragraph);
-
-        messagesDiv.appendChild(divForEachMessage);
+        const messageElement = createMessageElement(message);
+        messagesDiv.appendChild(messageElement);
 
 
         //réactons émojis
-        if(message.author === "Felix"){
-            const emojiDiv = document.createElement("div");
-            emojiDiv.classList.add("reactions");
-
-            if(message.reactions && message.reactions.length > 0 ){
-                message.reactions.forEach(reaction => {
-                    const reactionSpan = document.createElement("span");
-                    reactionSpan.classList.add("reaction");
-                    reactionSpan.textContent = reaction;
-
-                    emojiDiv.appendChild(reactionSpan);
-                    reactionSpan.addEventListener("click", () => {reactionSpan.remove()})
-                })
-
-
-            }
-
-            const pouce = document.createElement("span");
-            pouce.textContent = "👍";
-            pouce.classList.add("emoji");
-            pouce.addEventListener("click", ()=>{addReaction(message,"👍" )})
-            const heart = document.createElement("span");
-            heart.textContent = "❤";
-            heart.classList.add("emoji");
-            heart.addEventListener("click",()=>{addReaction(message,"❤" )})
-
-            emojiDiv.appendChild(heart);
-            emojiDiv.appendChild(pouce);
-
-            divForEachMessage.appendChild(emojiDiv);}
-
-
-        messagesDiv.appendChild(divForEachMessage);
-
+        if(message.author === "Felix") {
+            const emojiDiv = createReactionButtons(message);
+            messagesDiv.appendChild(emojiDiv);
+        }
     })
 }
+function createAuthorElement(message){
+    const nameMessage = document.createElement("p");
+    const imageProfil = document.createElement("img");
+    imageProfil.classList.add("imageProfil");
 
 
+    if(message.author === "Felix"){
+        nameMessage.style.textAlign = "left";
+        imageProfil.src = 'images/jeanpaul_fondvertbasePNG.png'
+
+    }else{
+
+        nameMessage.style.textAlign = "right";
+        imageProfil.style.textAlign = "right";
+        imageProfil.src = 'images/myImage.png'
+
+    }
+    nameMessage.textContent = message.author ;
+    nameMessage.prepend(imageProfil);
+    return nameMessage;
+}
+function createMessageElement(message){
+    const divForEachMessage = document.createElement("div");
+    const paragraph = document.createElement("p");
+
+    paragraph.classList.add("bulle");
+    paragraph.textContent = message.content;
+
+    const nameMessage = createAuthorElement(message);
+    paragraph.classList.add(message.author === "Felix" ? "felix" : "user");
+
+    divForEachMessage.appendChild(nameMessage);
+    divForEachMessage.appendChild(paragraph);
+
+    return divForEachMessage;
+
+
+}
+function createReactionElement(reaction){
+    const reactionSpan = document.createElement("span");
+    reactionSpan.classList.add("reaction");
+    reactionSpan.textContent = reaction;
+    reactionSpan.addEventListener("click", () => {reactionSpan.remove()})
+    return reactionSpan;
+
+}
+function createReactionButtons(message){
+    const emojiDiv = document.createElement("div");
+    emojiDiv.classList.add("reactions");
+
+    if(message.reactions && message.reactions.length > 0 ){
+        message.reactions.forEach(reaction => {
+            const reactionSpan = createReactionElement(reaction);
+            emojiDiv.appendChild(reactionSpan);
+        })
+    }
+    const pouce = createEmojiButton("👍", message)
+    const heart = createEmojiButton("❤", message)
+
+    emojiDiv.appendChild(heart);
+    emojiDiv.appendChild(pouce);
+
+    return emojiDiv;
+}
+function createEmojiButton(message, emoji){
+    const button = document.createElement("button");
+    button.textContent = emoji;
+    button.classList.add("emoji");
+    button.addEventListener("click", ()=>{addReaction(message, emoji)})
+    return button;
+}
 function addReaction(message, reaction){
     if(!message.reactions){
         message.reactions = [];
