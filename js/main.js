@@ -40,7 +40,7 @@ function addEmoji(message){
 // Fonction de remplacement
     message.content = message.content.replace(smileyRegex, match => smileyToEmoji[match]);
 
-    console.log(transformedText);
+    console.log(message.content);
 
 
 }
@@ -175,7 +175,7 @@ function displayMessages (){
 
 
         messagesDiv.appendChild(divForEachMessage);
-        addEmoji();
+
     })
 }
 
@@ -188,6 +188,7 @@ function addReaction(message, reaction){
     displayMessages();
 }
 function addMessageToArray(message){
+    addEmoji(message);
     messagesArray.push(message)
     console.log(messagesArray)
 }
