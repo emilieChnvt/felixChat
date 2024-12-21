@@ -1,3 +1,4 @@
+
 let  token = null;
 const loginPage = document.querySelector(".login");
 const allConv = document.querySelector(".allConv");
@@ -14,27 +15,12 @@ let premierMessage ={
 
 let messagesArray=[premierMessage];
 
-
-async function login(username, password) {
-    let params ={
-        method:"POST",
-        headers:{
-            "Content-type":"application/json",
+conversation.addEventListener('click', ()=>{
+    displayChat();
+    allConv.style.display = "none";
+})
 
 
-        },
-        body: JSON.stringify({
-            username: username,
-            password: password,
-        })
-    }
-    return await fetch('https://felix.esdlyon.dev/login', params)
-        .then(response => response.json())
-        .then(data =>{
-               return data.token
-            }
-        )
-}
 
 
 
@@ -55,29 +41,7 @@ function displayLoginForm(){
     })
 
 }
-async function poseUneQuestionaIa(prompt){
 
-    let parameters ={
-        method:"POST",
-        headers:{
-            'Content-type':"application/json",
-            'Authorization':"Bearer " + token,
-        },
-        body: JSON.stringify({
-            prompt: prompt,
-        } )
-    }
-    showTypingPhrase()
-    return await fetch('https://felix.esdlyon.dev/ollama', parameters)
-
-        .then(response => response.json())
-        .then(data =>{
-            hideLoading()
-            console.log(data)
-            return data.message
-        })
-
-}
 
 function displayChat(){
     chat.style.display = "flex";
@@ -86,10 +50,8 @@ function displayChat(){
     handlePrompt()
 
 }
-conversation.addEventListener('click', ()=>{
-  displayChat();
-    allConv.style.display = "none";
-})
+
+
 
 function handlePrompt(){
     const prompt = document.querySelector(".prompt");
@@ -218,3 +180,49 @@ function hideLoading(){
     loading.style.display = "none";
 }
 displayLoginForm();
+
+
+async function login(username, password) {
+    let params ={
+        method:"POST",
+        headers:{
+            "Content-type":"application/json",
+
+
+        },
+        body: JSON.stringify({
+            username: username,
+            password: password,
+        })
+    }
+    return await fetch('https://felix.esdlyon.dev/login', params)
+        .then(response => response.json())
+        .then(data =>{
+                return data.token
+            }
+        )
+}
+
+async function poseUneQuestionaIa(prompt){
+
+    let parameters ={
+        method:"POST",
+        headers:{
+            'Content-type':"application/json",
+            'Authorization':"Bearer " + token,
+        },
+        body: JSON.stringify({
+            prompt: prompt,
+        } )
+    }
+    showTypingPhrase()
+    return await fetch('https://felix.esdlyon.dev/ollama', parameters)
+
+        .then(response => response.json())
+        .then(data =>{
+            hideLoading()
+            console.log(data)
+            return data.message
+        })
+
+}
