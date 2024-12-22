@@ -151,6 +151,10 @@ function deleteElement(divForEachMessage, message){
     const trash = document.createElement("p");
     trash.innerHTML = '🗑️'
 
+    if(message.author !== "Felix"){
+        trash.style.textAlign = "right";
+    }
+
     trash.addEventListener("click", ()=>{
         const index = messagesArray.indexOf(message);
         if(index !== -1){
