@@ -19,8 +19,12 @@ conversation.addEventListener('click', ()=>{
     displayChat();
     allConv.style.display = "none";
 })
-
-
+function saveMessages(){
+    localStorage.setItem("messages", JSON.stringify(messagesArray)); //stocke tous les messages
+}
+function loadMessages(){
+    localStorage.getItem("messages"); //récupères les messages
+}
 function addEmoji(message){
 
     const smileyToEmoji = {
