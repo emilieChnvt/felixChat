@@ -23,8 +23,13 @@ function saveMessages(){
     localStorage.setItem("messages", JSON.stringify(messagesArray)); //stocke tous les messages
 }
 function loadMessages(){
-    localStorage.getItem("messages"); //récupères les messages
+    const storedMessages = localStorage.getItem("messages"); //récupères les messages
+    if(storedMessages){
+        messagesArray=JSON.parse(storedMessages);
+
+    }
 }
+
 function addEmoji(message){
 
     const smileyToEmoji = {
@@ -213,7 +218,8 @@ function addReaction(message, reaction){
 }
 function addMessageToArray(message){
     addEmoji(message);
-    messagesArray.push(message)
+    messagesArray.push(message);
+    saveMessages()
     console.log(messagesArray)
 }
 
