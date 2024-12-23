@@ -238,6 +238,7 @@ function showTypingPhrase(){
 function hideLoading(){
     loading.style.display = "none";
 }
+loadMessages();
 displayLoginForm();
 
 
