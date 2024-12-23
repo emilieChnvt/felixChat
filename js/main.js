@@ -170,6 +170,7 @@ function deleteElement(divForEachMessage, message){
             messagesArray.splice(index, 1);
         }
         divForEachMessage.remove();
+        saveMessages()
         displayMessages();
     })
 
