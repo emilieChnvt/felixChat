@@ -159,6 +159,7 @@ function createMessageElement(message){
 function deleteElement(divForEachMessage, message){
     const trash = document.createElement("p");
     trash.innerHTML = '🗑️'
+    trash.style.cursor = "pointer";
 
     if(message.author !== "Felix"){
         trash.style.textAlign = "right";
